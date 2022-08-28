@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初始vue</title>
+        <!--引入vue-->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!--准备好一个容器-->
+        <!--
+            1.想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象
+            2.root容器里的代码符合html规范，会混入一些特殊的vue语法
+            3.root容器里面的代码被称为vue【模板】
+
+            注意区分：js表达式和js代码（语句）
+                1.表达式：一个表达式会生成一个值，可以放在任何一个需要值的地方
+                2.代码
+        -->
+        <div id="root">
+            <h1>Hello,{{name.toUpperCase()}}{{address}}{{Date.now()}}</h1>
+        </div>
+        <script type="text/javascript">
+            Vue.config.productionTip = false    //  防止vue启动时生成生成提示
+
+            //  创建Vue实例
+            //  容器与实例是一对一关系，开发中只有一个，经常配合组件一起使用
+            new Vue({
+                //  el为element的缩写？
+                el: '#root', //  el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+                data: { // data中用于存储数据，数据供el指定的容器去使用，值暂时先写成对象
+                    name:'world',
+                    address:'北京'
+                }
+            })
+        </script>
+    </body>
+</html>

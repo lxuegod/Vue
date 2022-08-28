@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script type="text/javascript" >
+
+            let data = {
+                name:'gun',
+                address:'北京',
+            }
+
+            //  创建一个实例对象，用于监视data中属性变化
+            const obs = new Observable({data})
+            console.log(obs)
+
+            //  准备一个vm实例对象
+            let vm = {}
+            vm._data = data = obs
+
+            function Observable(obj){
+                //  汇总对象所有的属性形成一个数组
+                const keys = Object.keys(obj)
+                //  遍历
+                keys.forEach((k)=>{
+                    Object.defineProperty(this,k,{
+                        get(){
+                            return obj[k]
+                        },
+                        set(val){
+                            console.log(`${k}被改变了，去解析模板，是生成虚拟dom`)
+                            obj[k] = val
+                        }
+                    })
+                })
+            }
+		</script>
+	</body>
+</html>
